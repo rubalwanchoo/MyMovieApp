@@ -26,6 +26,8 @@ struct Constants{
             static let ApiHost = "api.themoviedb.org"
             static let ApiPath = "/3"
             static let ApiPathTokenNew="/authentication/token/new"
+            static let ApiPathValidateWithToken="/authentication/token/validate_with_login"
+            static let ApiAuthenticateSessionNew="authentication/session/new"
         }
         
         // MARK: TMDB Parameter Keys
