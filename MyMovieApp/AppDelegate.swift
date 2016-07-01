@@ -12,6 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    //MARK: Custom declarations
+    let mySession = NSURLSession.sharedSession()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -43,4 +46,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension AppDelegate{
+    
+    func getTMDBURLWithExtension(additionalPath:String, additionalParams:[String:AnyObject])-> NSURL{
+        
+        
+        let components = NSURLComponents()
+        
+        components.scheme = Constants.TMDB.ApiScheme
+        components.host = Constants.TMDB.ApiHost
+        components.path = Constants.TMDB.ApiPath + additionalPath
+        components.queryItems=[NSURLQueryItem]()
+        
+        components.queryItems?.append(NSURLQueryItem(name: Constants.TMDBParameterKeys.ApiKey, value: Constants.TMDBParameterValues.ApiKey))
+        
+        
+        for item in additionalParams{
+            components.queryItems?.append(NSURLQueryItem(name:item.0, value:item.1 as? String))
+        }
+        
+        return components.URL!
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
 

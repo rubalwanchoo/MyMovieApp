@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		BEFEC9F81D2443AF0034DD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFEC9F71D2443AF0034DD7C /* AppDelegate.swift */; };
-		BEFEC9FA1D2443AF0034DD7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFEC9F91D2443AF0034DD7C /* ViewController.swift */; };
+		BEFEC9FA1D2443AF0034DD7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFEC9F91D2443AF0034DD7C /* LoginViewController.swift */; };
 		BEFEC9FD1D2443AF0034DD7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEFEC9FB1D2443AF0034DD7C /* Main.storyboard */; };
 		BEFEC9FF1D2443AF0034DD7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEFEC9FE1D2443AF0034DD7C /* Assets.xcassets */; };
 		BEFECA021D2443AF0034DD7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEFECA001D2443AF0034DD7C /* LaunchScreen.storyboard */; };
+		BEFECA0A1D25654A0034DD7C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFECA091D25654A0034DD7C /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BEFEC9F41D2443AF0034DD7C /* MyMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFEC9F71D2443AF0034DD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BEFEC9F91D2443AF0034DD7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BEFEC9F91D2443AF0034DD7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BEFEC9FC1D2443AF0034DD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEFEC9FE1D2443AF0034DD7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEFECA011D2443AF0034DD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEFECA031D2443AF0034DD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEFECA091D25654A0034DD7C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,31 @@
 		BEFEC9F61D2443AF0034DD7C /* MyMovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				BEFECA0C1D2585830034DD7C /* Models */,
+				BEFECA0B1D2585730034DD7C /* ViewControllers */,
 				BEFEC9F71D2443AF0034DD7C /* AppDelegate.swift */,
-				BEFEC9F91D2443AF0034DD7C /* ViewController.swift */,
 				BEFEC9FB1D2443AF0034DD7C /* Main.storyboard */,
 				BEFEC9FE1D2443AF0034DD7C /* Assets.xcassets */,
 				BEFECA001D2443AF0034DD7C /* LaunchScreen.storyboard */,
 				BEFECA031D2443AF0034DD7C /* Info.plist */,
 			);
 			path = MyMovieApp;
+			sourceTree = "<group>";
+		};
+		BEFECA0B1D2585730034DD7C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BEFEC9F91D2443AF0034DD7C /* LoginViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BEFECA0C1D2585830034DD7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEFECA091D25654A0034DD7C /* Constants.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEFEC9FA1D2443AF0034DD7C /* ViewController.swift in Sources */,
+				BEFEC9FA1D2443AF0034DD7C /* LoginViewController.swift in Sources */,
 				BEFEC9F81D2443AF0034DD7C /* AppDelegate.swift in Sources */,
+				BEFECA0A1D25654A0034DD7C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
