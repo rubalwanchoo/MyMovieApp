@@ -28,6 +28,7 @@ struct Constants{
             static let ApiPathTokenNew="/authentication/token/new"
             static let ApiPathValidateWithToken="/authentication/token/validate_with_login"
             static let ApiAuthenticateSessionNew="authentication/session/new"
+            static let ApiAccount="/account"
         }
         
         // MARK: TMDB Parameter Keys

@@ -213,23 +213,147 @@ class LoginViewController: UIViewController {
         
         print("URL -" + myURL.description)
         
+        let myRequest = NSURLRequest(URL: myURL)
+        
+        let myTask = appDelegate.mySession.dataTaskWithRequest(myRequest) { (data, response, error) in
+            
+            
+            //Check if error is nil
+            guard (error==nil) else{
+                print("Error with request- " + error!.description)
+                return
+            }
+            
+            //Check if response headers returned non 200 status code
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode>=200 && statusCode<=299 else{
+                
+                print("Service replied with status code- " + (response as? NSHTTPURLResponse)!.statusCode.description )
+                return
+            }
+            
+            //Checlk if data is present in the response
+            guard let data=data else{
+                print("No data in response")
+                return
+            }
+            
+            print("Response Data -" + data.description)
+            
+            //Parse the JSON out of the data
+            let parsedResult:AnyObject!
+            do{
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                
+                print("Parsed JSON - " + parsedResult!.description)
+                
+            }catch{
+                print("Error parsing response data")
+                return
+            }
+            
+            
+            //Check if parsed JSON has an error in its Status code. In this case, if status code is present in the parsed JSON, that will always be an error
+            if let _=parsedResult[Constants.TMDBResponseKeys.StatusCode] as? Int{
+                print("The MOVIEDB returned an error- " + parsedResult.description)
+                return
+            }
+            
+            
+            guard let success=parsedResult[Constants.TMDBResponseKeys.Success] as? Bool where success == true else{
+                print("API response failed - "+parsedResult.description)
+                return
+            }
+            
+            
+            guard let sessionId = parsedResult[Constants.TMDBResponseKeys.SessionID] as? String else{
+                print("No Session ID found in response- " + parsedResult.description)
+                return
+            }
+            
+            self.appDelegate.sessionId=sessionId
+            self.getUserId(self.appDelegate.sessionId!)
         
         
+        }//End MyTask
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        myTask.resume()
         
     }//end getSessionId
+    
+    
+    
+    
+    func getUserId(sessionId:String){
+        
+        //http://api.themoviedb.org/3/account?api_key=286a627b92ed9226a1229a4bc096db2e&session_id=3b6445ca593c99ae04876fc5dc7d0da556aee6ff
+        
+        let myURL = appDelegate.getTMDBURLWithExtension(Constants.TMDB.ApiAccount,additionalParams: [Constants.TMDBParameterKeys.SessionID:sessionId])
+        
+        
+        print("URL -" + myURL.description)
+        
+        let myRequest = NSURLRequest(URL: myURL)
+        
+        let myTask = appDelegate.mySession.dataTaskWithRequest(myRequest) { (data, response, error) in
+            
+            
+            //Check if error is nil
+            guard (error==nil) else{
+                print("Error with request- " + error!.description)
+                return
+            }
+            
+            //Check if response headers returned non 200 status code
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode>=200 && statusCode<=299 else{
+                print("Service replied with Message-" + ((response as? NSHTTPURLResponse)!.allHeaderFields[Constants.TMDBResponseKeys.Status] as! String))
+                return
+            }
+            
+            //Checlk if data is present in the response
+            guard let data=data else{
+                print("No data in response")
+                return
+            }
+            
+            print("Response Data -" + data.description)
+            
+            //Parse the JSON out of the data
+            let parsedResult:AnyObject!
+            do{
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                
+                print("Parsed JSON - " + parsedResult!.description)
+                
+            }catch{
+                print("Error parsing response data")
+                return
+            }
+            
+            
+            //Check if parsed JSON has an error in its Status code. In this case, if status code is present in the parsed JSON, that will always be an error
+            if let _=parsedResult[Constants.TMDBResponseKeys.StatusCode] as? Int{
+                print("The MOVIEDB returned an error- " + parsedResult.description)
+                return
+            }
+            
+            
+            guard let userId = parsedResult[Constants.TMDBResponseKeys.UserID] as? Int else{
+                print("No Session ID found in response- " + parsedResult.description)
+                return
+            }
+            
+            self.appDelegate.userId=userId
+            
+            
+            print("LOGIN SUCCESS")
+            
+            
+        }//End MyTask
+        
+        myTask.resume()
+
+        
+    }//End getUserId
 
 }
 
