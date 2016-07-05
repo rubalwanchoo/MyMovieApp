@@ -142,6 +142,7 @@ class LoginViewController: UIViewController {
         
         let myRequest = NSURLRequest(URL: myURL)
         
+        
         let myTask = appDelegate.mySession.dataTaskWithRequest(myRequest) { (data, response, error) in
             
             
